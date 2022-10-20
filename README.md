@@ -4,7 +4,7 @@ __XÂY DỰNG ỨNG DỤNG CHAT REALTIME SỬ DỤNG NODE JS SOCKET IO__
 - ứng dụng chat realtime phổ biến hiện nay như Zalo, Messenger, ... đều là những ứng dụng chat realtime, khi 1 user gửi 1 text cho 1 user khác, thì ngay lập tức cả trên 2 thiết bị đều sẽ hiển thị text lên màn hình của user (client)
 - để làm được điều này, server sẽ thực hiện việc __On__ (lắng nghe) các __Emit__ (phát tín hiệu) của các client, sau đó trả kết quả về các client hoặc chính client vừa emit
 
-<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/mo_ta_node_js_hoat_dong_o_server.png">
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/motahoatdongcuaserver.png">
 
 ___
 ___
@@ -58,7 +58,7 @@ __CÀI ĐẶT NODE JS VÀ GIT__
 
 - kiểm tra phiên bản NodeJS đã cài đặt trên máy hay chưa, ta chuột phải vào bất kỳ vị trí folder hay màn hình chọn Git Bash Here, 1 cửa sổ dòng lệnh sẽ hiển thị, nhập lệnh sau để kiểm tra NodeJS đã cài đặt hay chưa, nếu đã cài đặt thành công thì số phiên bản sẽ được in ra console
 
-<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/kiem_tra_version_cua_node_js.png">
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/kiemtraversioncuanodejs.png">
 
 - vì NodeJS là môi trường runtime để thực thi JavaScript, nên việc có kiến thức về cách sử dụng NodeJS là cần thiết
 - link tham khảo tài liệu NodeJS -> [NodeJS Cơ Bản](http://online.khoapham.vn/nodejs/93-lap-trinh-nodejs-cho-nguoi-moi-bat-dau.html)
