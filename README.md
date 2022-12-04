@@ -13,6 +13,7 @@ __NODE JS LÀ GÌ__
 
 - NodeJS là một môi trường runtime chạy JavaScript đa nền tảng và có mã nguồn mở, được sử dụng để chạy các ứng dụng web bên ngoài trình duyệt của client.
 
+___
 ƯU ĐIỂM CỦA NODE JS
 
 - IO hướng sự kiện không đồng bộ, cho phép xử lý nhiều yêu cầu đồng thời.
@@ -22,6 +23,7 @@ __NODE JS LÀ GÌ__
 - Cộng đồng hỗ trợ tích cực.
 - Cho phép stream các file có kích thước lớn.
 
+___
 NHƯỢC ĐIỂM CỦA NODE JS
 
 - Không có khả năng mở rộng, vì vậy không thể tận dụng lợi thế mô hình đa lõi trong các phần cứng cấp server hiện nay.
@@ -30,6 +32,7 @@ NHƯỢC ĐIỂM CỦA NODE JS
 - Cần có kiến thức tốt về JavaScript.
 - Không phù hợp với các tác vụ đòi hỏi nhiều CPU.
 
+___
 NHỮNG ỨNG DỤNG NÊN SỬ DỤNG NODE JS
 
 - Ứng dụng trò chuyện trong thời gian thực: Nhờ vào cấu trúc không đồng bộ đơn luồng, Node.JS rất thích hợp cho mục đích xử lý giao tiếp trong thời gian thực. Nền tảng này có thể dễ dàng mở rộng quy mô và thường dùng để tạo ra các chatbot. Bên cạnh đó, các tính năng liên quan đến ứng dụng trò chuyện như: chat nhiều người, thông báo đẩy,… cũng có thể dễ dàng được bổ sung nhờ NodeJS.
@@ -38,6 +41,7 @@ NHỮNG ỨNG DỤNG NÊN SỬ DỤNG NODE JS
 - Các SPA (Single-page application) phức tạp: Trong SPA, toàn bộ ứng dụng được load vào trong một trang duy nhất, do đó sẽ có một số request được thực hiện trong nền. Vòng lặp sự kiện (event loop) của Node.JS cho phép xử lý các request theo hướng non-blocking.
 - Các ứng dụng REST dựa trên API: JavaScript được sử dụng trong cả frontend lẫn backend của trang. Do đó một server có thể dễ dàng giao tiếp với frontend qua REST API bằng Node.js. Bên cạnh đó, Node.JS còn cung cấp nhiều package như Express.js hay Koa để việc xây dựng ứng dụng web trở nên dễ dàng hơn bao giờ hết.
 
+___
 NHỮNG KẾT LUẬN SAI LẦM VỀ NODE JS
 
 - Đầu tiên, NodeJS là một nền tảng (platform) chứ không phải một web framework như một số người thường nhầm lẫn.
@@ -106,6 +110,7 @@ SỬ DỤNG NODE PACKAGE MANAGER (npm) CÀI ĐẶT (install) CÁC MODULE CHO SER
 
 <img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/completeInstallModulesForNodeJsServer.png">
 
+___
 THIẾT LẬP CẤU HÌNH EXPRESS
 
 - Express là 1 Framework dành cho NodeJS, nó cung cấp nhiều tính năng mạnh mẽ trên nền tảng web cũng như các ứng dụng mobile
@@ -176,6 +181,7 @@ dependencies {
 }
 ```
 
+___
 THỰC HIỆN CONNECT APP ĐẾN SERVER
 
 - trong MainActivity, khai báo biến kiểu ``Socket`` của package ``io.socket.client`` (thư viện của client)
@@ -218,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
 
 - Android không hiểu localhost (không giống Web) nên phải thay thế bằng IP của Server đang hoạt động thay cho ``localhost:3000``
 
+___
 LỆNH KIỂM TRA SERVER CÓ HOẠT ĐỘNG HAY KHÔNG
 
 - thay vì khi thực hiện khởi chạy server với ``node index.js``, ta phải vào trình duyệt kiểm tra file ``index.html``, ta có thể viết dòng lệnh trong file cấu hình Express in ra console của Git Bash thông báo server đang hoạt động khi gọi lệnh ``node index.js``
@@ -240,7 +247,7 @@ console.log("server running...")
 
 <img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/testSeverByConsole.png">
 
-
+___
 LỆNH THÔNG BÁO CLIENT CONNECT SERVER
 
 - khi có 1 thiết bị connect đến server (gọi là ``emit``) thì server làm nhiệm vụ lắng nghe (gọi là ``on``)
@@ -271,7 +278,7 @@ io.sockets.on('connection', function(socket){
 
 <img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/testDeviceConnectServer.png">
 
-
+___
 GỬI DATA TỪ CLIENT SOCKET ĐẾN SERVER IO - EMIT ON
 
 - để gửi data từ client (Android) đến server (NodeJS), client sẽ thực hiện lệnh ``emit(String, Object)``, trong đó String là tên sự kiện ``emit``, Object là data sẽ gửi đi (bất kỳ kiểu data cần gửi)
@@ -327,6 +334,7 @@ io.sockets.on("connection", function(socket){
 
 <img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/emitDataToNodeJs.png">
 
+___
 GỬI DATA TỪ SERVER IO ĐẾN CLIENT SOCKET VÀ CÁC CLIENTS SOCKETS - EMIT ON
 
 - giả sử ngay khi ``io`` vừa ``on`` từ ``socket`` nào đó
@@ -420,3 +428,713 @@ public class MainActivity extends AppCompatActivity {
     };
 }
 ```
+
+___
+___
+___
+
+__XÂY DỰNG GIAO DIỆN APP CHAT REALTIME__
+
+- sau khi thực hiện xây dựng server, chạy thử, kiểm tra emit và on giữa server và client, ta tiến hành thực hiện xây dựng app chat realtime
+- app chat realtime sẽ có giao diện như sau:
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/appChatRealtimeSketch.png">
+
+- ta cần chuẩn bị 2 icon add friend và send message, 1 background
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/iconAndBackground.png">
+
+___
+LAYOUT CHO MAIN ACTIVITY
+
+- file Layout của MainActivity ta thiết kế như sau
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_app_chat"
+    android:orientation="vertical"
+    android:padding="3dp"
+    android:weightSum="10"
+    tools:context=".MainActivity">
+
+    <ListView
+        android:id="@+id/listviewUser"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="Nội dung chat: "
+        android:textColor="@color/design_default_color_on_primary"
+        android:textSize="20sp" />
+
+    <ListView
+        android:id="@+id/listviewChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <EditText
+            android:id="@+id/editTextContent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:hint="Input here..."
+            android:textColor="@color/design_default_color_on_primary"
+            android:textColorHint="@color/design_default_color_on_primary" />
+
+        <ImageButton
+            android:id="@+id/imageButtonAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/ico_add_friend" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/ico_send_message" />
+
+    </LinearLayout>
+</LinearLayout>
+```
+
+- preview trên Android Studio ta sẽ được như sau
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/previewMainActivityLayout.png">
+
+___
+
+KHAI BÁO ÁNH XẠ CÁC VIEW TRÊN LAYOUT CỦA MAIN ACTIVITY
+
+- ta tiến khai khai báo và ánh xạ các thành phần trên layout của MainActivity đã thiết kế
+    - ListView user (hiển thị danh sách bạn bè), chat (hiển thị danh sách nội dung của tất cả mọi người)
+    - EditText content (input nội dung chat)
+    - ImageButton add (dùng để thêm bạn), send (dùng để gửi nội dung nhập vào editText content)
+- file MainActivity.java sẽ có nội dung như sau
+```java
+public class MainActivity extends AppCompatActivity {
+
+    ListView lvUser, lvChat;
+    EditText edtContent;
+    ImageButton btnAdd, btnSend;
+
+    private Socket mSocket;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        AnhXa();
+
+        try {
+            mSocket = IO.socket("http://192.168.1.8:3000/"); // Android không hiểu localhost (không giống Web) nên phải thay thế bằng IP của Server đang hoạt động
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        mSocket.connect();
+
+        mSocket.on("server_send_data", onRetrieveData);
+
+        mSocket.emit("client_send_data", "Lap trinh Android");
+    }
+
+
+    private Emitter.Listener onRetrieveData = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    JSONObject jsonObject = (JSONObject) args[0];
+                    try {
+                        String messageFromServer = jsonObject.getString("noi_dung");
+                        Toast.makeText(MainActivity.this, messageFromServer, Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    };
+
+
+    private void AnhXa() {
+        btnAdd = findViewById(R.id.imageButtonAdd);
+        btnSend = findViewById(R.id.imageButtonSend);
+        edtContent = findViewById(R.id.editTextContent);
+        lvUser = findViewById(R.id.listviewUser);
+        lvChat = findViewById(R.id.listviewChat);
+    }
+}
+```    
+
+___
+___
+
+CÁC SỰ KIỆN QUẢN LÝ ĐĂNG KÝ USER GIỮA CÁC CLIENT VÀ SERVER
+
+- giữa client và server: 
+    - client emit đăng ký tên user lên server: ``client_register_user``
+    - server emit kết quả xử lý việc đăng ký user cho client: ``server_send_result``
+- giữa server và các client:
+    - server emit danh sách user được đăng ký đến các client: ``server_send_user_list`` 
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/cacEventGiuaClientVaServer.png">
+
+___
+
+SỰ KIỆN CLIENT ĐĂNG KÝ USER LÊN SERVER
+
+- sự kiện đầu tiên client connect() đến server là sự kiện mặc định ban đầu bắt buộc
+- tiếp theo ta xử lý sự kiện, client (app Android) sẽ emit 1 sự kiện có tên ``client_register_user`` đến server để thông báo việc đăng ký user lên server
+- đầu tiên ta sẽ xử lý logic ở client, khi client emit đăng ký user đến server
+    - buttonAdd user sẽ được bắt sự kiện Listener
+    - trong sự kiện Listener ở buttonAdd sẽ lấy giá trị nhập vào edittext
+    - sau đó client mSocket sẽ emit giá trị của edittext lên server
+
+```java
+        mSocket.connect();
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtContent.getText().toString().trim().length() > 0) {
+                    mSocket.emit("client_register_user", edtContent.getText().toString());
+                }
+            }
+        });
+
+//        mSocket.on("server_send_data", onRetrieveData);
+//
+//        mSocket.emit("client_send_data", "Lap trinh Android");
+```
+
+- ở server ta chỉnh sửa lại
+    - trong sự kiện client socket connect đến server
+    - ta bắt sự kiện on ``client_register_user`` của client socket đang kết nối đến server
+
+```js
+io.sockets.on('connection', function(socket){
+    console.log("co thiet bi vua ket noi...");
+
+    socket.on('client_register_user', function(data){
+        console.log("server nhan dang ky: " + data);
+    });
+});
+```
+
+- có vấn đề xảy ra, vì user chỉ là duy nhất trên server, nhưng ở server lúc này chỉ đơn giản là client emit là server sẽ on mà không kiểm tra user đó đã có trên server hay chưa
+- cách giải quyết là mỗi khi client emit sự kiện đăng ký user, server sẽ on sự kiện đó, nhưng server phải có 1 database hoặc ở đây đơn giản ta server sẽ chứa tên user vào 1 array, mỗi lần on sự kiện đăng ký user server sẽ kiểm tra user đó đã được đăng ký hay chưa
+
+```js
+const express = require('express');
+const app = express();
+const ServerSockerIO = require('http').createServer(app);
+const io = require('socket.io')(ServerSockerIO);
+const fs = require('fs');
+ServerSockerIO.listen(process.env.PORT || 3000);
+
+app.get("/", function(req, res){
+    res.sendFile(__dirname + '/index.html');    
+});
+
+console.log("server running...");
+
+var arrayUser = [];
+
+io.sockets.on('connection', function(socket){
+    console.log("co thiet bi vua ket noi...");
+
+    socket.on('client_register_user', function(data){
+        if (arrayUser.indexOf(data) == -1) {
+            // user chưa được đăng ký vào mảng, nên index của nó nằm ngoài mảng là -1
+            // vì là user mới nên sẽ được server ghi vào mảng (được đăng ký)
+            arrayUser.push(data);
+            console.log("server nhan dang ky: " + data);
+        } else {
+            console.log("da ton tai user: " + data);
+        }
+    });
+});
+```
+
+- như vậy là server đã xử lý thành công việc client socket đăng ký, và kiểm tra user đã đăng ký trước đó hay chưa, nhưng lúc này chỉ có server nhận biết được kết quả thành công hay không, còn client socket vẫn chưa biết được, vì vậy ta cần server trả về kết quả đăng ký tên user cho client socket
+- đối với việc server emit trả kết quả đăng ký user của client socket, thì chỉ trả về cho riêng client đã đăng ký, không thể vô lý trả kết quả đăng ký user của 1 client cho tất cả các client không liên quan khác
+- để thuận tiện, ta đặt 1 biến ``boolean`` dùng để xác nhận sự tồn tại của user trên server, server sẽ dùng biến ``boolean`` này emit đến client vừa đăng ký user xem như là thông báo sự tồn tại của user trên server, server rút gọn được việc phải emit 2 lần ở ``if-else`` (nó sẽ dẫn đến client phải on 2 lần ở app)
+- sau khi kiểm tra ở ``if-else`` và thiết lập giá trị xác nhận user cho biến ``boolean``, server sẽ emit biết ``boolean`` cho client như sau, lưu ý chỉ emit đến duy nhất đến client vừa emit đăng ký user, không emit đến các client không liên quan
+
+```js
+var arrayUser = [];
+var regUsrResult = true;
+
+io.sockets.on('connection', function(socket){
+    console.log("co thiet bi vua ket noi...");
+
+    socket.on('client_register_user', function(data){
+        if (arrayUser.indexOf(data) == -1) {
+            // user chưa được đăng ký vào mảng, nên index của nó nằm ngoài mảng là -1
+            // vì là user mới nên sẽ được server ghi vào mảng (được đăng ký)
+            regUsrResult = false; // user không tồn tại trên server
+            arrayUser.push(data);
+            console.log("server nhan dang ky: " + data);
+        } else {
+            regUsrResult = true; // user đã tồn tại trên server
+            console.log("da ton tai user: " + data);
+        }
+
+        // server trả kết quả về duy nhất client vừa đăng ký user
+        socket.emit('server_send_result', {regResult : regUsrResult})
+    });
+});
+```
+
+- quay trở lại app, sau khi server emit kết quả đăng ký user, client app phải on sự kiện này để lấy giá trị kết quả đăng ký thông báo cho người dùng app
+- ta chỉnh sửa tên của Listener __onRetrieveData__ đã tạo để test chương trình trước đó thành __onRetrieveResult__
+- trong Listener __onRetrieveResult__ ta khai báo biến boolean để hứng giá trị boolean mà server emit về app (client), if-else với mỗi giá trị tương ứng ta sẽ thông báo Toast cho người dùng biết user mà người dùng đăng ký đã tồn tại hay đăng ký thành công
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    ListView lvUser, lvChat;
+    EditText edtContent;
+    ImageButton btnAdd, btnSend;
+
+    private Socket mSocket;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        AnhXa();
+
+        try {
+            mSocket = IO.socket("http://192.168.1.8:3000/"); // Android không hiểu localhost (không giống Web) nên phải thay thế bằng IP của Server đang hoạt động
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        mSocket.connect();
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtContent.getText().toString().trim().length() > 0) {
+                    mSocket.emit("client_register_user", edtContent.getText().toString().trim());
+                }
+            }
+        });
+
+        mSocket.on("server_send_result", onRetrieveResult);
+//
+//        mSocket.emit("client_send_data", "Lap trinh Android");
+    }
+
+
+    private Emitter.Listener onRetrieveResult = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    // server NodeJS  luôn emit về client 1 JSONObject
+                    JSONObject jsonObject = (JSONObject) args[0];
+                    try {
+                        // khai báo biến boolean để hứng giá trị boolean theo tên của JSONObject
+                        boolean isUsrExist = jsonObject.getBoolean("regResult"); // regResult : name của JSONObject mà server emit về client
+                        if (isUsrExist) {
+                            Toast.makeText(MainActivity.this, "Tài khoản này đã tồn tại", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    };
+
+
+    private void AnhXa() {
+        btnAdd = findViewById(R.id.imageButtonAdd);
+        btnSend = findViewById(R.id.imageButtonSend);
+        edtContent = findViewById(R.id.editTextContent);
+        lvUser = findViewById(R.id.listviewUser);
+        lvChat = findViewById(R.id.listviewChat);
+    }
+}
+```
+
+- trên Android Studio, để có thể chạy 2 emulator ở 2 cửa sổ riêng biệt, mở cửa sổ __Setting (Ctrl+Shift+S)__ của AndroidStudio, trong mục __Tool/Emulator__, bỏ dấu stick __Launch in a tool window__ thì các Emulator sẽ khởi chạy như 1 ứng dụng riêng biệt
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/settingChoEmulator2WindowTrongAndroidStudio.png">
+
+- sau khi start 2 Emulator riêng biệt cho việc dễ dàng kiểm tra server có emit về từng client riêng biệt hay không, tiến hành chạy thử chương trình lên cả 2 Emulator, thực hiện việc đăng ký ở mỗi Emulator, kiểm tra việc đăng trùng user, và việc server emit về mỗi Emulator
+
+___
+
+SỰ KIỆN SERVER EMIT VỀ CÁC CLIENT DANH SÁCH USER ĐÃ ĐĂNG KÝ LÊN SERVER
+
+- sau khi các client đăng ký user thành công, server phải gửi về danh sách các user cho các client biết được danh sách user mà client đang chat
+- như vậy server sẽ emit danh sách mảng các user về cho các client, client sử dụng dữ liệu đổ ra listview hiển thị danh sách user
+- ở đây, mỗi khi có 1 client đăng ký user thành công, server sẽ emit ngay lập tức danh sách user về cho các client
+- khi server kiểm tra user đã tồn tại hay chưa, nếu chưa tồn tại, server cho phép đăng ký, ngay lập tức server cập nhật danh sách user và emit danh sách đó về cho các client
+
+```js
+const express = require('express');
+const app = express();
+const ServerSockerIO = require('http').createServer(app);
+const io = require('socket.io')(ServerSockerIO);
+const fs = require('fs');
+ServerSockerIO.listen(process.env.PORT || 3000);
+
+app.get("/", function(req, res){
+    res.sendFile(__dirname + '/index.html');    
+});
+
+console.log("server running...");
+
+var arrayUser = [];
+var regUsrResult = true;
+
+io.sockets.on('connection', function(socket){
+    console.log("co thiet bi vua ket noi...");
+
+    socket.on('client_register_user', function(data){
+        if (arrayUser.indexOf(data) == -1) {
+            // user chưa được đăng ký vào mảng, nên index của nó nằm ngoài mảng là -1
+            // vì là user mới nên sẽ được server ghi vào mảng (được đăng ký)
+            regUsrResult = false; // user không tồn tại trên server
+            arrayUser.push(data);
+            console.log("server nhan dang ky: " + data);
+
+            // server emit danh sách user về tất cả các client
+            io.sockets.emit('server_send_userList', {usrList : arrayUser});
+        } else {
+            regUsrResult = true; // user đã tồn tại trên server
+            console.log("da ton tai user: " + data);
+        }
+
+        // server emit kết quả về duy nhất client vừa đăng ký user
+        socket.emit('server_send_result', {regResult : regUsrResult})
+    });
+});
+````
+
+- ở client lúc này phải tạo sự kiện on để lấy danh sách user mà server emit về các client
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    //...
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //...
+
+        mSocket.on("server_send_userList", onRetrieveUsrList);
+    }
+
+    private Emitter.Listener onRetrieveUsrList = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    JSONObject object = (JSONObject) args[0];
+                    try {
+                        JSONArray array = object.getJSONArray("usrList");
+                        for (int i = 0; i < array.length(); i++) {
+                            String usrName = array.getString(i);
+                            Toast.makeText(MainActivity.this, usrName, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    };
+
+    //...
+}
+```
+
+- như đoạn code trên, sau khi client on sự kiện của server emit về, ta tạo callback Listener server emit, trong hành động Runnable sau khi lấy được JSONObject
+    - lấy ra __value__ là JSONArray của JSONObject với __name__ tương ứng của JSONObject mà server emit về
+    - sau khi có array user, ta chỉ cần duyệt qua từng phần từ và lấy nó ra
+    - ở đây ta chỉ test bằng cách Toast lần lượt từng user lên màn hình app
+- sau khi chạy thử nếu Toast thành công, tức là dữ liệu emit từ server về client, và client on bắt sự kiện thành công, ta sẽ đổ dữ liệu ra ListView
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    ListView lvUser, lvChat;
+    //...
+    ArrayList<String> userArray;
+    ArrayAdapter userAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //...
+
+        mSocket.on("server_send_userList", onRetrieveUsrList);
+
+        // khai báo Array và Adapter
+        userArray = new ArrayList<>();
+        userAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, userArray);
+        
+        // kết nối Adapter đến ListView
+        lvUser.setAdapter(userAdapter);
+
+    }
+
+    private Emitter.Listener onRetrieveUsrList = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    JSONObject object = (JSONObject) args[0];
+                    try {
+                        JSONArray array = object.getJSONArray("usrList");
+
+                        // trước khi duyệt lần lượt phần tử trong mảng và đổ lên listview, ta cần clear() array
+                        // nếu không mỗi lần có client đăng ký user server lại emit dữ liệu về, listview sẽ bị trùng lặp dữ liệu
+                        userArray.clear();
+                        for (int i = 0; i < array.length(); i++) {
+                            String usrName = array.getString(i);
+                            userArray.add(usrName);
+                        }
+                        // cập nhật lại Adapter
+                        userAdapter.notifyDataSetChanged();
+                        
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    };
+
+    //...
+}
+```
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/setDataReceiveFromServerOntoListview.png">
+
+___
+
+SỰ KIỆN CLIENT EMIT NỘI DUNG CHAT SERVER ON - SERVER EMIT NỘI DUNG CHAT GIỮA CÁC CLIENT, CÁC CLIENT ON
+
+- khi các client chat với nhau
+    - client emit nội dung chat đó lên server, server sẽ on
+    - server emit nội dung chat vừa nhận đươc đến các client
+    - các client (bao gồm cả client gửi nội dung chat) sẽ on nội dung chat mà server emit để hiển thị lên màn hình
+- lưu ý: trong khi chat sẽ có rất nhiều client emit liên tục, cần phân biệt nội dung chat của các client với nhau
+
+CLIENT EMIT NỘI DUNG CHAT
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/eventSendChatContent.png">
+
+- ở phía client, khi người dùng click vào btnSend, client sẽ lấy nội dung trong editText emit lên server
+- như vậy ta cần bắt sự kiện click vào btnSend, và khai báo emit trong đó
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    //...
+    ImageButton btnAdd, btnSend;
+
+    private Socket mSocket;
+
+    //...
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //...
+
+        mSocket.connect();
+
+        //...
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String chatContent = edtContent.getText().toString().trim();
+                if (chatContent.length() > 0) {
+                    mSocket.emit("client_send_chat", chatContent);
+                }
+            }
+        });
+
+        //...
+    }
+
+    //...
+}
+```
+
+- sau khi client emit, thì server phải on đúng sự kiện đó, ở file server __index.js__ ta thực hiện lắng nghe on sự kiện mà client emit nội dung chat, trong sự kiện server on lắng nghe client connect đến server
+- lúc này trong sự kiện client connect đến server, ta có 2 sự kiện server on lắng nghe client
+    - client emit đăng ký user
+    - client emit nội dung chat của user
+- trong sự kiện server on lắng nghe client connect đến server, ta tạo thêm sự kiện on lắng nghe client emit nội dung chat đến server, để kiểm tra ta xuất nội dung đó ra console của Git-Bash
+
+```js
+io.sockets.on('connection', function(socket){
+    console.log("co thiet bi vua ket noi...");
+
+    socket.on('client_register_user', function(data){
+        //..
+    });
+
+    socket.on('client_send_chat', function(contentChat){
+        console.log(contentChat);
+    });
+});
+``` 
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/testChatContent.png">
+
+- vấn đề lúc này, ta không phân biệt nội dung chat của các client, server hệ thống hay chương trình client có thể hiểu, nhưng người dùng hoặc người điều khiển server sẽ không biết, vì mỗi nội không xác định được client nào gửi
+- để giải quyết vấn đề này ta phải nắm cách server và client hoạt động như sau
+    - client __connect__ đến server
+    - server __on__ lắng nghe sự kiện client connect và nhận lưu trữ 1 socket (socket hiểu là thiết bị client - nó đại diện cho chuỗi mã hóa mà chỉ server lưu trữ và quản lý)
+    - trong chính sự kiện client connect đến server sẽ chứa các sự kiện __emit on__ qua lại giữa server và client
+- như vậy, socket là tên đại diện cho client, nhưng nếu cố tình lấy socket in ra màn hình console ta chỉ nhận được    
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/errorPrintSocket.png">
+
+- giải quyết vấn đề này như sau:
+    - trong sự kiện __server on__ lắng nghe __client emit__ đăng ký user, ta gán biến __data__ (data là tên user được đăng ký) cho __socket.un__
+    - lúc này __socket.un__ chính là tên user gắn liền với socket và được server quản lý cho những sự kiện sau (không sử dụng biến data vì data chỉ là dữ liệu client gửi đi, không đại diện cho client-socket)
+
+```js
+io.sockets.on('connection', function(socket){
+    console.log("co thiet bi vua ket noi...");
+
+    socket.on('client_register_user', function(data){
+        if (arrayUser.indexOf(data) == -1) {
+            // user chưa được đăng ký vào mảng, nên index của nó nằm ngoài mảng là -1
+            // vì là user mới nên sẽ được server ghi vào mảng (được đăng ký)
+            regUsrResult = false; // user không tồn tại trên server
+            arrayUser.push(data);
+            console.log("server nhan dang ky: " + data);
+
+            // thiết lập lại định danh cho socket-client connect đến server
+            socket.un = data;
+
+            // emit danh sách user về tất cả các client
+            io.sockets.emit('server_send_userList', {usrList : arrayUser});
+        } else {
+            regUsrResult = true; // user đã tồn tại trên server
+            console.log("da ton tai user: " + data);
+        }
+
+        // server trả kết quả về duy nhất client vừa đăng ký user
+        socket.emit('server_send_result', {regResult : regUsrResult})
+    });
+
+    socket.on('client_send_chat', function(contentChat){
+        console.log("---[" + socket.un + "]---: " + contentChat);
+    });
+});
+```
+
+- kết quả test chương trình
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/testSuccessNameAndChatContent.png">
+
+- hiện giờ ta chỉ đang test trên server hiển thị nội dung chat cùng với tên chỉ định của client, nhưng ứng dụng chat là cuộc trò chuyện giữa các client, và các client phải thấy được nội dung chat với nhau, server phải emit nội dung chat mà client emit lên server cho các client trong hệ thống chat để người dùng có thể biết được mình và các client khác đang chat nội dung gì
+- khi server on lắng nghe được client emit nội dung chat, ngay lập tức trong sự kiện server lắng nghe được nội dung chat, server ngay lập tức emit nội dung chat đó về cho tất cả các client trong toàn server
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/eventServerSendChatContent.png">
+
+- ta thêm sự kiện server emit nội dung chat về cho các client trong sự kiện server on nội dung chat từ client emit lên server
+
+```js
+    socket.on('client_send_chat', function(contentChat){
+        console.log("---[" + socket.un + "]---: " + contentChat);
+
+        io.sockets.emit('server_send_chat', {chatContent : "---[" + socket.un + "]---: " + contentChat});
+    });
+```
+
+- bây giờ phía client phải on lắng nghe sự kiện server emit nội dung chat về
+- khai báo data và adapter
+```java
+    ArrayList<String> chatArray;
+    ArrayAdapter chatAdapter;
+```
+- trong onCreate khởi tạo data và adapter
+```java
+        // khởi tạo Array và Adapter chat List
+        chatArray = new ArrayList<>();
+        chatAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, chatArray);
+        // kết nối Adapter đến ListView
+        lvChat.setAdapter(chatAdapter);
+```
+- trong onCreate gọi on lắng nghe sự kiện __server_send_chat__ từ server emit về
+```java
+        mSocket.on("server_send_chat", onListChat);
+```
+- __onListChat__ là callback do ta dựng dùng để lắng nghe sự kiện của __Emitter.Listener__
+- trong MainActivity ta tạo callback này như sau
+```java
+    private Emitter.Listener onListChat = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    JSONObject jsonObject = (JSONObject) args[0];
+                    try {
+                        String chatContent = jsonObject.getString("chatContent");
+                        chatArray.add(chatContent);
+                        chatAdapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    };
+```
+- lưu ý là khác với userList, chatList này không cần clear() array
+    - ở userList, trên server sẽ giữ 1 array user, mỗi lần thêm user server sẽ emit 1 lần, nên tránh trùng lặp ở client ta phải clear array
+    - ở chatList, server on được nội dung chat nào, sẽ emit nội dung chat đó ngay lặp tức, nếu client clear array, sẽ mất những đoạn chat trước đó, vì server ở đây ta xây dựng không có lưu lại nội dung chat nhận được từ client
+- kết quả test nội dung chat giữa 2 client
+
+<img src="https://github.com/hienqp/Ngay045-NodeJS-SocketIO-AppChatRealtime/blob/main/testListChat.png">
